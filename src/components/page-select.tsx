@@ -27,9 +27,14 @@ export const PageSelect = () => {
       </SelectTrigger>
       <SelectContent>
         <SelectItem value="/">トップページ</SelectItem>
-        <SelectItem value="/modi-sync">修正による連携</SelectItem>
-        <SelectItem value="/ref-sync">参照による連携</SelectItem>
-        <SelectItem value="/using-chatgpt">ChatGPTの活用</SelectItem>
+        <SelectItem value="/experiment">実験</SelectItem>
+        {pathName !== '/experiment' ? (
+          <>
+            <SelectItem value="/modi-sync">修正による連携</SelectItem>
+            <SelectItem value="/ref-sync">参照による連携</SelectItem>
+            <SelectItem value="/using-chatgpt">ChatGPTの活用</SelectItem>
+          </>
+        ) : null}
       </SelectContent>
     </Select>
   );
