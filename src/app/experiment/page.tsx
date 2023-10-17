@@ -26,8 +26,8 @@ export default function Experiment() {
       </section>
       <div className="flex justify-center mt-12">
         <Button size="lg" asChild>
-          {/* ランダムな実験ページに移動 */}
-          <Link href="/">実験を始める</Link>
+          {/* TODO: ランダムな実験ページに移動 */}
+          <Link href="/experiment/modi-sync">実験を始める</Link>
         </Button>
       </div>
     </div>

@@ -1,9 +1,20 @@
+import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { Mic } from 'lucide-react';
 
-export const RecordingButton = () => {
+interface Props {
+  onClick: () => void;
+  recording: boolean;
+}
+
+export const RecordingButton = ({ onClick, recording }: Props) => {
   return (
-    <Button variant="outline" size="icon" className="rounded-full">
+    <Button
+      variant={recording ? 'destructive' : 'outline'}
+      size="icon"
+      onClick={onClick}
+      className={cn('rounded-full', recording && 'animate-pulse bg-red-600')}
+    >
       <Mic className="h-4 w-4" />
     </Button>
   );
