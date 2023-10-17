@@ -2,7 +2,11 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { PageSelect } from './page-select';
 import Link from 'next/link';
 
-export const Header = () => {
+export const Header = ({
+  actions,
+}: {
+  actions?: React.ReactNode;
+} = {}) => {
   return (
     <header className="flex items-center justify-between px-2 py-4 border-b border-b-border">
       <Link href="/">
@@ -10,10 +14,11 @@ export const Header = () => {
           Hospital Smarter
         </h1>
       </Link>
-      <div className="flex flex-0 gap-1">
+      {actions}
+      {/* <div className="flex flex-0 gap-1">
         <ModeToggle />
         <PageSelect />
-      </div>
+      </div> */}
     </header>
   );
 };
