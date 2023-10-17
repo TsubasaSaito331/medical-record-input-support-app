@@ -10,6 +10,15 @@ import {
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next/navigation';
 
+/** page-selectが表示されるペース */
+const pageSelectPaths = [
+  '/',
+  '/experiment',
+  '/modi-sync',
+  '/ref-sync',
+  '/using-chatgpt',
+];
+
 export const PageSelect = () => {
   const router = useRouter();
   const pathName = usePathname();
@@ -19,6 +28,10 @@ export const PageSelect = () => {
 
     router.push(value);
   };
+
+  if (!pageSelectPaths.includes(pathName)) {
+    return null;
+  }
 
   return (
     <Select value={pathName} onValueChange={onValueChange}>
