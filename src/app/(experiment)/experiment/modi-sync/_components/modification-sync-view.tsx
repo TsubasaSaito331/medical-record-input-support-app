@@ -5,10 +5,9 @@ import { RecordingButton } from '@/components/recording-button';
 import { useASRInput } from '@/hooks/useASRInput';
 
 export const ModificationSyncView = () => {
-  const { value, setValue, toggleRecording, transcript, recording } =
-    useASRInput({
-      target: 'MAIN',
-    });
+  const { value, toggleRecording, transcript, recording } = useASRInput({
+    target: 'MAIN',
+  });
 
   return (
     <>

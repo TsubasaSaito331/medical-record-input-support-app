@@ -1,6 +1,7 @@
+import Link from 'next/link';
+
 import { PageTitle } from '@/components/page-title';
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
 
 export default function Experiment() {
   return (

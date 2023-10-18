@@ -1,10 +1,11 @@
 import 'regenerator-runtime';
 
-import { useStaticSWR } from './useStaticSWR';
 import { useCallback, useEffect, useState } from 'react';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from 'react-speech-recognition';
+
+import { useStaticSWR } from './useStaticSWR';
 
 export const useASRInput = ({ target }: { target: ASRInputTarget }) => {
   const { asrInputTarget, setASRInputTarget } = useASRInputTarget();

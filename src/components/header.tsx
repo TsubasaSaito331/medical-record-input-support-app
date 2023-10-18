@@ -1,6 +1,7 @@
-import { ModeToggle } from '@/components/mode-toggle';
-import { PageSelect } from './page-select';
 import Link from 'next/link';
+
+// import { ModeToggle } from '@/components/mode-toggle';
+// import { PageSelect } from './page-select';
 
 export const Header = ({
   actions,

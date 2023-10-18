@@ -1,6 +1,8 @@
-import { cn } from '@/lib/utils';
-import { Button } from './ui/button';
 import { Mic } from 'lucide-react';
+
+import { cn } from '@/lib/utils';
+
+import { Button } from './ui/button';
 
 interface Props {
   onClick: () => void;

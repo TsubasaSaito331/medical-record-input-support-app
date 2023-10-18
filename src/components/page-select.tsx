@@ -1,5 +1,8 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+
 import {
   Select,
   SelectContent,
@@ -7,8 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { usePathname } from 'next/navigation';
-import { useRouter } from 'next/navigation';
 
 export const PageSelect = () => {
   const router = useRouter();
