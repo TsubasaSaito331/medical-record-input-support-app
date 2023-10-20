@@ -1,6 +1,7 @@
 import { Header } from '@/components/header';
 import { ModeToggle } from '@/components/mode-toggle';
-import { Button } from '@/components/ui/button';
+
+import { SendButton } from './experiment/_components/send-button';
 
 export default function ExperimentLayout({
   children,
@@ -13,7 +14,7 @@ export default function ExperimentLayout({
         actions={
           <div className="flex flex-0 gap-1">
             <ModeToggle />
-            <Button>送信</Button>
+            <SendButton />
           </div>
         }
       />
