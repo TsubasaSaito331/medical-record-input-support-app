@@ -21,6 +21,12 @@ function ExperimentNavigatorButton() {
   const [usingChatGPTEval] = useSessionStorage<ExperimentEval | undefined>(
     EXPERIMENT_EVAL_KEY.USING_CHAT_GPT,
   );
+  const [manualInputPCEval] = useSessionStorage<ExperimentEval | undefined>(
+    EXPERIMENT_EVAL_KEY.MANUAL_INPUT_PC,
+  );
+  const [manualInputMobileEval] = useSessionStorage<ExperimentEval | undefined>(
+    EXPERIMENT_EVAL_KEY.MANUAL_INPUT_MOBILE,
+  );
 
   const nextExperimentPagePath = (() => {
     /* まだ終わっていない実験のパスのリスト **/
@@ -34,6 +40,12 @@ function ExperimentNavigatorButton() {
       }
       if (usingChatGPTEval !== undefined) {
         ignorePaths.push(EXPERIMENT_TARGET_PATH.USING_CHAT_GPT);
+      }
+      if (manualInputPCEval !== undefined) {
+        ignorePaths.push(EXPERIMENT_TARGET_PATH.MANUAL_INPUT_PC);
+      }
+      if (manualInputMobileEval !== undefined) {
+        ignorePaths.push(EXPERIMENT_TARGET_PATH.MANUAL_INPUT_MOBILE);
       }
       return !ignorePaths.includes(path);
     });

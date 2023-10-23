@@ -27,8 +27,20 @@ export const ExperimentResultTable = () => {
   const [usingChatGPTEval] = useSessionStorage<ExperimentEval | undefined>(
     EXPERIMENT_EVAL_KEY.USING_CHAT_GPT,
   );
+  const [manualInputPCEval] = useSessionStorage<ExperimentEval | undefined>(
+    EXPERIMENT_EVAL_KEY.MANUAL_INPUT_PC,
+  );
+  const [manualInputMobileEval] = useSessionStorage<ExperimentEval | undefined>(
+    EXPERIMENT_EVAL_KEY.MANUAL_INPUT_MOBILE,
+  );
 
-  if (!modiSyncEval && !refSyncEval && !usingChatGPTEval) {
+  if (
+    !modiSyncEval &&
+    !refSyncEval &&
+    !usingChatGPTEval &&
+    !manualInputPCEval &&
+    !manualInputMobileEval
+  ) {
     return <p>実験結果はありません</p>;
   }
 
@@ -62,6 +74,16 @@ export const ExperimentResultTable = () => {
           <TableCell>Using ChatGPT</TableCell>
           <TableCell>{usingChatGPTEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{usingChatGPTEval?.time || '-'}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Manual Input (PC)</TableCell>
+          <TableCell>{manualInputPCEval?.easeOfUse || '-'}</TableCell>
+          <TableCell>{manualInputPCEval?.time || '-'}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Manual Input (Mobile)</TableCell>
+          <TableCell>{manualInputMobileEval?.easeOfUse || '-'}</TableCell>
+          <TableCell>{manualInputMobileEval?.time || '-'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
