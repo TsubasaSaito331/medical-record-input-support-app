@@ -50,7 +50,7 @@ function ExperimentNavigatorButton() {
   if (nextExperimentPagePath === undefined) {
     return (
       <Button size="lg" variant="destructive" asChild>
-        <Link href="/experiment">実験を終了する</Link>
+        <Link href="/">実験を終了する</Link>
       </Button>
     );
   }

@@ -1,4 +1,8 @@
 'use client';
+/**
+ * NOTE: Hydration Errorが出ているので対応を待つ:
+ * ref: https://github.com/shadcn-ui/ui/issues/1577
+ */
 
 import { useSessionStorage } from 'react-use';
 
