@@ -20,7 +20,7 @@ export const ROUNDS_ITEM_LABELS = {
   PULSE: '脈拍',
   BLOOD_PRESSURE_HIGH: '血圧上',
   BLOOD_PRESSURE_LOW: '血圧下',
-  RESPIRATION: '呼吸回数',
+  RESPIRATION: '呼吸数',
   NOTE: '補足事項',
 } as const satisfies Record<ROUNDS_ITEM, string>;
 
