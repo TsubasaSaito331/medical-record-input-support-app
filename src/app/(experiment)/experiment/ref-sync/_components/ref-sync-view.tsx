@@ -1,9 +1,10 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useState } from 'react';
 import { useSessionStorage } from 'react-use';
 
+import { ExperimentStartAlertDialog } from '@/app/(experiment)/experiment/_components/experiment-start-alert-dialog';
 import { RecordingButton } from '@/components/recording-button';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -35,6 +36,7 @@ export const RefSyncView = () => {
   const { startTimer, stopTimer, time } = useTimer();
   const [refSyncEvalStorage, setRefSyncEvalStorage] =
     useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.REF_SYNC);
+  const [dialogOpen, setDialogOpen] = useState(true);
 
   const buttonDisabled =
     temperaturePositions.length === 0 ||
@@ -54,14 +56,14 @@ export const RefSyncView = () => {
     router.push(pathname + '/eval');
   };
 
-  // TODO: 開始前にダイアログを表示
-  useEffect(() => {
+  const onCloseDialog = () => {
+    setDialogOpen(false);
     startTimer();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  };
 
   return (
     <>
+      <ExperimentStartAlertDialog open={dialogOpen} onClose={onCloseDialog} />
       <div className="space-y-8">
         <p className="text-sm">所要時間: {Math.floor(time)}秒</p>
         {recording || originalValue.length === 0 ? (
