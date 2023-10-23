@@ -8,7 +8,7 @@ export const EXPERIMENT_EVAL_KEYS = Object.values(EXPERIMENT_EVAL_KEY);
 
 export interface ExperimentEval {
   easeOfUse: number;
-  time?: number;
+  time: number;
 }
 
 export const EXPERIMENT_TARGET_PATH = {
