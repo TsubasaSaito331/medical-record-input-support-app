@@ -124,7 +124,7 @@ export const RefSyncView = () => {
             />
           </div>
         </section>
-        <div className="flex justify-center items-center">
+        <div className="flex items-center justify-center">
           <Button
             size="lg"
             disabled={buttonDisabled}
@@ -135,7 +135,7 @@ export const RefSyncView = () => {
         </div>
       </div>
 
-      <div className="fixed z-50 bottom-8 right-8">
+      <div className="fixed bottom-8 right-8 z-50">
         <RecordingButton onClick={toggleRecording} recording={recording} />
       </div>
     </>

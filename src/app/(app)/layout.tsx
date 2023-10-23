@@ -7,13 +7,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <>
       <Header
         actions={
-          <div className="flex flex-0 gap-1">
+          <div className="flex-0 flex gap-1">
             <ModeToggle />
             <PageSelect />
           </div>
         }
       />
-      <main className="max-w-screen-md mx-auto py-8 px-4">{children}</main>
+      <main className="mx-auto max-w-screen-md px-4 py-8">{children}</main>
     </>
   );
 }

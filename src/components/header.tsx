@@ -9,9 +9,9 @@ export const Header = ({
   actions?: React.ReactNode;
 } = {}) => {
   return (
-    <header className="flex items-center justify-between px-2 py-4 border-b border-b-border">
+    <header className="flex items-center justify-between border-b border-b-border px-2 py-4">
       <Link href="/">
-        <h1 className="font-heading text-lg md:text-xl font-bold">
+        <h1 className="font-heading text-lg font-bold md:text-xl">
           Hospital Smarter
         </h1>
       </Link>

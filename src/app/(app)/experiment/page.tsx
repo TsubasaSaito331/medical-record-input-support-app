@@ -29,12 +29,12 @@ export default function Experiment() {
         </p>
       </div>
       <section className="mt-8">
-        <h3 className="font-bold text-xl">あなたの実験結果</h3>
+        <h3 className="text-xl font-bold">あなたの実験結果</h3>
         <div className="mt-4">
           <ExperimentResultTable />
         </div>
       </section>
-      <div className="flex justify-center mt-12">
+      <div className="mt-12 flex justify-center">
         <DynamicExperimentNavigatorButton />
       </div>
     </div>

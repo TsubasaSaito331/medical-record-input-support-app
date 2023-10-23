@@ -11,9 +11,9 @@ export const UsingChatGPTView = () => {
   return (
     <>
       <div>{recording ? transcript : value}</div>
-      <div className="space-y-8 mt-10"></div>
+      <div className="mt-10 space-y-8"></div>
 
-      <div className="fixed z-50 bottom-8 right-8">
+      <div className="fixed bottom-8 right-8 z-50">
         <RecordingButton onClick={toggleRecording} recording={recording} />
       </div>
     </>

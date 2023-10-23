@@ -35,7 +35,7 @@ export const ModiSyncEval = () => {
           step={1}
         />
       </div>
-      <div className="flex justify-center mt-8">
+      <div className="mt-8 flex justify-center">
         <Button onClick={onClickSendButton}>送信</Button>
       </div>
     </div>

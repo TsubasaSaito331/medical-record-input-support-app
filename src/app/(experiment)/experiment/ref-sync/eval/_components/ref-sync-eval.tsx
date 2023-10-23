@@ -36,7 +36,7 @@ export const RefSyncEval = () => {
           onChange={(e) => setTime(Number(e.target.value))}
         />
       </div>
-      <div className="space-y-2 mt-8">
+      <div className="mt-8 space-y-2">
         <Label>使いやすさ</Label>
         <Slider
           value={evalValue}
@@ -45,7 +45,7 @@ export const RefSyncEval = () => {
           step={1}
         />
       </div>
-      <div className="flex justify-center mt-12">
+      <div className="mt-12 flex justify-center">
         <Button onClick={onClickSendButton}>送信</Button>
       </div>
     </div>
