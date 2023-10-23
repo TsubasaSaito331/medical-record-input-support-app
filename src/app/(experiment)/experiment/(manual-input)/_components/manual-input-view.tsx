@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import type { ExperimentEval } from '@/constants/experiment';
-import type { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
+import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 import { ROUNDS_ITEM_LABELS } from '@/constants/rounds';
 import { useTimer } from '@/hooks/useTimer';
 
@@ -60,7 +60,15 @@ export const ManualInputView = ({ mode }: Props) => {
 
   return (
     <>
-      <ExperimentStartAlertDialog open={dialogOpen} onClose={onCloseDialog} />
+      <ExperimentStartAlertDialog
+        title={
+          mode === EXPERIMENT_EVAL_KEY.MANUAL_INPUT_PC
+            ? '手動入力（PC）'
+            : '手動入力（モバイル）'
+        }
+        open={dialogOpen}
+        onClose={onCloseDialog}
+      />
       <div className="space-y-4">
         <p className="text-sm">所要時間: {Math.floor(time)}秒</p>
         <div>

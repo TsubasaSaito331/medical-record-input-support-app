@@ -67,7 +67,13 @@ function ExperimentNavigatorButton() {
     );
   }
 
-  if (!modiSyncEval && !refSyncEval && !usingChatGPTEval) {
+  if (
+    !modiSyncEval &&
+    !refSyncEval &&
+    !usingChatGPTEval &&
+    !manualInputPCEval &&
+    !manualInputMobileEval
+  ) {
     return (
       <Button size="lg" asChild>
         <Link href={nextExperimentPagePath}>実験を始める</Link>

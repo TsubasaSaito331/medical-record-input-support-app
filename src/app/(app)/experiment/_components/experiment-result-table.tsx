@@ -76,12 +76,16 @@ export const ExperimentResultTable = () => {
           <TableCell>{usingChatGPTEval?.time || '-'}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Manual Input (PC)</TableCell>
+          <TableCell>
+            Manual Input <br /> (PC)
+          </TableCell>
           <TableCell>{manualInputPCEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{manualInputPCEval?.time || '-'}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Manual Input (Mobile)</TableCell>
+          <TableCell>
+            Manual Input <br /> (Mobile)
+          </TableCell>
           <TableCell>{manualInputMobileEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{manualInputMobileEval?.time || '-'}</TableCell>
         </TableRow>

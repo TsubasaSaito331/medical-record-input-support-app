@@ -9,16 +9,17 @@ import {
 } from '@/components/ui/alert-dialog';
 
 interface Props {
+  title: string;
   open: boolean;
   onClose: () => void;
 }
 
-export const ExperimentStartAlertDialog = ({ open, onClose }: Props) => {
+export const ExperimentStartAlertDialog = ({ title, open, onClose }: Props) => {
   return (
     <AlertDialog open={open}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>実験を開始しますか？</AlertDialogTitle>
+          <AlertDialogTitle>{title}</AlertDialogTitle>
           <AlertDialogDescription>
             実験を開始すると、時間計測が始まります。
             <br />

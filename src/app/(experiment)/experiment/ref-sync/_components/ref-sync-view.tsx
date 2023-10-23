@@ -63,7 +63,11 @@ export const RefSyncView = () => {
 
   return (
     <>
-      <ExperimentStartAlertDialog open={dialogOpen} onClose={onCloseDialog} />
+      <ExperimentStartAlertDialog
+        title="参照による連携手法"
+        open={dialogOpen}
+        onClose={onCloseDialog}
+      />
       <div className="space-y-8">
         <p className="text-sm">所要時間: {Math.floor(time)}秒</p>
         {recording || originalValue.length === 0 ? (
