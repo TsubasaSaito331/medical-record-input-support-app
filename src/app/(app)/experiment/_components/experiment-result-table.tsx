@@ -37,25 +37,31 @@ export const ExperimentResultTable = () => {
       <TableHeader>
         <TableRow>
           <TableHead>手法</TableHead>
-          <TableHead>使いやすさ</TableHead>
-          <TableHead>所要時間</TableHead>
+          <TableHead>
+            <p>使いやすさ</p>
+            <p>（1 ~ 5）</p>
+          </TableHead>
+          <TableHead>
+            <p>所要時間</p>
+            <p>（秒）</p>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
           <TableCell>Modi Sync</TableCell>
           <TableCell>{modiSyncEval?.easeOfUse || '-'}</TableCell>
-          <TableCell>-</TableCell>
+          <TableCell>{modiSyncEval?.time || '-'}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Ref Sync</TableCell>
           <TableCell>{refSyncEval?.easeOfUse || '-'}</TableCell>
-          <TableCell>-</TableCell>
+          <TableCell>{refSyncEval?.time || '-'}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell>Using ChatGPT</TableCell>
           <TableCell>{usingChatGPTEval?.easeOfUse || '-'}</TableCell>
-          <TableCell>-</TableCell>
+          <TableCell>{usingChatGPTEval?.time || '-'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
