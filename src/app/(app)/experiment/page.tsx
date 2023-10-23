@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { PageTitle } from '@/components/page-title';
 import { Button } from '@/components/ui/button';
 
+import { ExperimentResultTable } from './experiment-result-table';
+
 export default function Experiment() {
   return (
     <div>
@@ -23,7 +25,9 @@ export default function Experiment() {
       </div>
       <section className="mt-8">
         <h3 className="font-bold text-xl">あなたの実験結果</h3>
-        <p className="mt-2">まだ実験結果はありません。</p>
+        <div className="mt-4">
+          <ExperimentResultTable />
+        </div>
       </section>
       <div className="flex justify-center mt-12">
         <Button size="lg" asChild>
