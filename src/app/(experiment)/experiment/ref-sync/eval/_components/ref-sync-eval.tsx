@@ -1,13 +1,28 @@
 'use client';
 
 import { Label } from '@radix-ui/react-dropdown-menu';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useSessionStorage } from 'react-use';
 
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
+import type { ExperimentEval } from '@/constants/sessionStorage';
+import { EXPERIMENT_EVAL_KEY } from '@/constants/sessionStorage';
 
 export const RefSyncEval = () => {
   const [evalValue, setEvalValue] = useState([2]);
+  const router = useRouter();
+  const [, setRefSyncEvalStorage] = useSessionStorage<ExperimentEval>(
+    EXPERIMENT_EVAL_KEY.REF_SYNC,
+  );
+
+  const onClickSendButton = () => {
+    setRefSyncEvalStorage({
+      easeOfUse: evalValue[0],
+    });
+    router.push('/experiment');
+  };
 
   return (
     <div>
@@ -21,7 +36,7 @@ export const RefSyncEval = () => {
         />
       </div>
       <div className="flex justify-center mt-8">
-        <Button>送信</Button>
+        <Button onClick={onClickSendButton}>送信</Button>
       </div>
     </div>
   );
