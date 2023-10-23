@@ -1,9 +1,14 @@
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 import { PageTitle } from '@/components/page-title';
-import { Button } from '@/components/ui/button';
 
-import { ExperimentResultTable } from './experiment-result-table';
+import { ExperimentResultTable } from './_components/experiment-result-table';
+
+// 乱数を使って次のページを決定するので、SSRを無効化する
+const DynamicExperimentNavigatorButton = dynamic(
+  () => import('./_components/experiment-navigator-button'),
+  { ssr: false },
+);
 
 export default function Experiment() {
   return (
@@ -30,10 +35,7 @@ export default function Experiment() {
         </div>
       </section>
       <div className="flex justify-center mt-12">
-        <Button size="lg" asChild>
-          {/* TODO: ランダムな実験ページに移動 */}
-          <Link href="/experiment/modi-sync">実験を始める</Link>
-        </Button>
+        <DynamicExperimentNavigatorButton />
       </div>
     </div>
   );

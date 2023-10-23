@@ -7,8 +7,8 @@ import { useSessionStorage } from 'react-use';
 
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
-import type { ExperimentEval } from '@/constants/sessionStorage';
-import { EXPERIMENT_EVAL_KEY } from '@/constants/sessionStorage';
+import type { ExperimentEval } from '@/constants/experiment';
+import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 
 export const RefSyncEval = () => {
   const [evalValue, setEvalValue] = useState([2]);

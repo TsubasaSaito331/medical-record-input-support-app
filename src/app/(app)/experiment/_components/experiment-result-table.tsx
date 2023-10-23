@@ -10,8 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import type { ExperimentEval } from '@/constants/sessionStorage';
-import { EXPERIMENT_EVAL_KEY } from '@/constants/sessionStorage';
+import type { ExperimentEval } from '@/constants/experiment';
+import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 
 export const ExperimentResultTable = () => {
   const [modiSyncEval] = useSessionStorage<ExperimentEval | undefined>(
