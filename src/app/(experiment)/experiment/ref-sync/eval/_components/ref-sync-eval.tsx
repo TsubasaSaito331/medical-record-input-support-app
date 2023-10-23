@@ -19,7 +19,7 @@ export const RefSyncEval = () => {
 
   const onClickSendButton = () => {
     setRefSyncEvalStorage({
-      easeOfUse: evalValue[0],
+      easeOfUse: evalValue[0] + 1, // 0 ~ 4 -> 1 ~ 5
     });
     router.push('/experiment');
   };
