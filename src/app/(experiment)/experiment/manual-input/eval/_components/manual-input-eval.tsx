@@ -14,10 +14,11 @@ import {
 } from '@/constants/experiment';
 
 export const ManualInputEval = () => {
-  const [manualInputEvalStorage, setManualInputEvalStorage] =
-    useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.MANUAL_INPUT);
+  const [manualInputEvalStorage, setManualInputEvalStorage] = useSessionStorage<
+    Partial<ExperimentEval> | undefined
+  >(EXPERIMENT_EVAL_KEY.MANUAL_INPUT);
   const [evalValue, setEvalValue] = useState([2]);
-  const [time, setTime] = useState(manualInputEvalStorage.time);
+  const [time, setTime] = useState(manualInputEvalStorage?.time ?? 0);
   const router = useRouter();
 
   const onClickSendButton = () => {

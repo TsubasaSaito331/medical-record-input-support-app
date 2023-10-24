@@ -13,9 +13,11 @@ import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 
 export const UsingChatGPTEval = () => {
   const [usingChatGPTEvalStorage, setUsingChatGPTEvalStorage] =
-    useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.USING_CHAT_GPT);
+    useSessionStorage<Partial<ExperimentEval> | undefined>(
+      EXPERIMENT_EVAL_KEY.USING_CHAT_GPT,
+    );
   const [evalValue, setEvalValue] = useState([2]);
-  const [time, setTime] = useState(usingChatGPTEvalStorage.time);
+  const [time, setTime] = useState(usingChatGPTEvalStorage?.time ?? 0);
   const router = useRouter();
 
   const onClickSendButton = () => {

@@ -12,10 +12,11 @@ import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 
 export const RefSyncEval = () => {
-  const [refSyncEvalStorage, setRefSyncEvalStorage] =
-    useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.REF_SYNC);
+  const [refSyncEvalStorage, setRefSyncEvalStorage] = useSessionStorage<
+    Partial<ExperimentEval> | undefined
+  >(EXPERIMENT_EVAL_KEY.REF_SYNC);
   const [evalValue, setEvalValue] = useState([2]);
-  const [time, setTime] = useState(refSyncEvalStorage.time);
+  const [time, setTime] = useState(refSyncEvalStorage?.time ?? 0);
   const router = useRouter();
 
   const onClickSendButton = () => {
