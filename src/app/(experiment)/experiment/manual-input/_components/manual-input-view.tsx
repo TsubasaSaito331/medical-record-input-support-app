@@ -35,7 +35,8 @@ export const ManualInputView = () => {
     pulse === '' ||
     bloodPressureHigh === '' ||
     bloodPressureLow === '' ||
-    respiration === '';
+    respiration === '' ||
+    note === '';
 
   const onClickSendButton = () => {
     stopTimer();
