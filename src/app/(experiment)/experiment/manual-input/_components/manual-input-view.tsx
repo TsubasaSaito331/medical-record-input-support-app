@@ -9,8 +9,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
-import { ROUNDS_ITEM_LABELS } from '@/constants/rounds';
+import { ROUNDS_ITEM_LABEL } from '@/constants/rounds';
 import { useTimer } from '@/hooks/useTimer';
+import type { RoundsFromChatGPT } from '@/lib/typechat/roundsSchema';
 
 import { ExperimentStartAlertDialog } from '../../_components/experiment-start-alert-dialog';
 
@@ -53,8 +54,20 @@ export const ManualInputView = () => {
     startTimer();
   };
 
+  const onClickExampleButton = async () => {
+    const res = await fetch('/api/structure', {
+      method: 'POST',
+      body: JSON.stringify({
+        text: '体温 36.5度 脈拍 80回/分 血圧 120の80です 呼吸数 16回/分 補足情報は明日ベッドの移動があります',
+      }),
+    });
+    const data = (await res.json()) as RoundsFromChatGPT;
+    console.log(data);
+  };
+
   return (
     <>
+      <Button onClick={() => void onClickExampleButton()}>Example</Button>
       <ExperimentStartAlertDialog
         title="手動入力"
         open={dialogOpen}
@@ -63,39 +76,39 @@ export const ManualInputView = () => {
       <div className="space-y-4">
         <p className="text-sm">所要時間: {Math.floor(time)}秒</p>
         <div>
-          <Label>{ROUNDS_ITEM_LABELS.TEMPERATURE}</Label>
+          <Label>{ROUNDS_ITEM_LABEL.TEMPERATURE}</Label>
           <Input
             value={temperature}
             onChange={(e) => setTemperature(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABELS.PULSE}</Label>
+          <Label>{ROUNDS_ITEM_LABEL.PULSE}</Label>
           <Input value={pulse} onChange={(e) => setPulse(e.target.value)} />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABELS.BLOOD_PRESSURE_HIGH}</Label>
+          <Label>{ROUNDS_ITEM_LABEL.BLOOD_PRESSURE_HIGH}</Label>
           <Input
             value={bloodPressureHigh}
             onChange={(e) => setBloodPressureHigh(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABELS.BLOOD_PRESSURE_LOW}</Label>
+          <Label>{ROUNDS_ITEM_LABEL.BLOOD_PRESSURE_LOW}</Label>
           <Input
             value={bloodPressureLow}
             onChange={(e) => setBloodPressureLow(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABELS.RESPIRATION}</Label>
+          <Label>{ROUNDS_ITEM_LABEL.RESPIRATION}</Label>
           <Input
             value={respiration}
             onChange={(e) => setRespiration(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABELS.NOTE}</Label>
+          <Label>{ROUNDS_ITEM_LABEL.NOTE}</Label>
           <Input value={note} onChange={(e) => setNote(e.target.value)} />
         </div>
       </div>

@@ -11,7 +11,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
-import { ROUNDS_ITEM_LABELS } from '@/constants/rounds';
+import { ROUNDS_ITEM_LABEL } from '@/constants/rounds';
 import { useRefSync } from '@/hooks/useRefSync';
 import { useTimer } from '@/hooks/useTimer';
 
@@ -80,7 +80,7 @@ export const RefSyncView = () => {
         )}
         <section className="space-y-8">
           <div className="space-y-1">
-            <Label>{ROUNDS_ITEM_LABELS.TEMPERATURE}</Label>
+            <Label>{ROUNDS_ITEM_LABEL.TEMPERATURE}</Label>
             <RefSyncInputs
               originalText={originalValue}
               pickUpPositions={temperaturePositions}
@@ -88,7 +88,7 @@ export const RefSyncView = () => {
             />
           </div>
           <div className="space-y-1">
-            <Label>{ROUNDS_ITEM_LABELS.PULSE}</Label>
+            <Label>{ROUNDS_ITEM_LABEL.PULSE}</Label>
             <RefSyncInputs
               originalText={originalValue}
               pickUpPositions={pulsePositions}
@@ -96,7 +96,7 @@ export const RefSyncView = () => {
             />
           </div>
           <div className="space-y-1">
-            <Label>{ROUNDS_ITEM_LABELS.BLOOD_PRESSURE_HIGH}</Label>
+            <Label>{ROUNDS_ITEM_LABEL.BLOOD_PRESSURE_HIGH}</Label>
             <RefSyncInputs
               originalText={originalValue}
               pickUpPositions={bloodPressureHighPositions}
@@ -104,7 +104,7 @@ export const RefSyncView = () => {
             />
           </div>
           <div className="space-y-1">
-            <Label>{ROUNDS_ITEM_LABELS.BLOOD_PRESSURE_LOW}</Label>
+            <Label>{ROUNDS_ITEM_LABEL.BLOOD_PRESSURE_LOW}</Label>
             <RefSyncInputs
               originalText={originalValue}
               pickUpPositions={bloodPressureLowPositions}
@@ -112,7 +112,7 @@ export const RefSyncView = () => {
             />
           </div>
           <div className="space-y-1">
-            <Label>{ROUNDS_ITEM_LABELS.RESPIRATION}</Label>
+            <Label>{ROUNDS_ITEM_LABEL.RESPIRATION}</Label>
             <RefSyncInputs
               originalText={originalValue}
               pickUpPositions={respirationPositions}
@@ -120,7 +120,7 @@ export const RefSyncView = () => {
             />
           </div>
           <div className="space-y-1">
-            <Label>{ROUNDS_ITEM_LABELS.NOTE}</Label>
+            <Label>{ROUNDS_ITEM_LABEL.NOTE}</Label>
             <RefSyncInputs
               originalText={originalValue}
               pickUpPositions={notePositions}

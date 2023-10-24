@@ -11,28 +11,6 @@ const DynamicExperimentNavigatorButton = dynamic(
 );
 
 export default function Experiment() {
-  // TODO: server actionsで実行する。
-  //   const response =
-  //     await translator.translate(`以下の本文、ルール、項目から、項目に関連度の高い情報を抽出せよ。
-
-  // ## 本文
-  // 本日の体温は36.5度、脈拍は72回、血圧は120の80、呼吸数は16回です。
-  // 補足情報としては明日ベッドの移動があります。
-
-  // ## ルール
-  // - 抽出した情報が文だった場合、文末を整える（例：「改善されており」→「改善されている」）
-  // - 数字が入った情報は数字のみ抽出する（例:「1,000円」→「1,000」）
-
-  // ## 項目
-  // - 体温
-  // - 脈拍
-  // - 血圧上
-  // - 血圧下
-  // - 呼吸数
-  // - 補足情報
-  // `);
-  //   console.log(response);
-
   return (
     <div>
       <PageTitle>実験</PageTitle>
