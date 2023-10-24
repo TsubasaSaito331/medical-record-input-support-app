@@ -11,7 +11,6 @@ import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 import { ROUNDS_ITEM_LABEL } from '@/constants/rounds';
 import { useTimer } from '@/hooks/useTimer';
-import type { RoundsFromChatGPT } from '@/lib/typechat/roundsSchema';
 
 import { ExperimentStartAlertDialog } from '../../_components/experiment-start-alert-dialog';
 
@@ -54,20 +53,8 @@ export const ManualInputView = () => {
     startTimer();
   };
 
-  const onClickExampleButton = async () => {
-    const res = await fetch('/api/structure', {
-      method: 'POST',
-      body: JSON.stringify({
-        text: '体温 36.5度 脈拍 80回/分 血圧 120の80です 呼吸数 16回/分 補足情報は明日ベッドの移動があります',
-      }),
-    });
-    const data = (await res.json()) as RoundsFromChatGPT;
-    console.log(data);
-  };
-
   return (
     <>
-      <Button onClick={() => void onClickExampleButton()}>Example</Button>
       <ExperimentStartAlertDialog
         title="手動入力"
         open={dialogOpen}

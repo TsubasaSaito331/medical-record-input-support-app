@@ -6,19 +6,21 @@ import { useState } from 'react';
 import { useSessionStorage } from 'react-use';
 
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 
 export const UsingChatGPTEval = () => {
+  const [usingChatGPTEvalStorage, setUsingChatGPTEvalStorage] =
+    useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.USING_CHAT_GPT);
   const [evalValue, setEvalValue] = useState([2]);
+  const [time, setTime] = useState(usingChatGPTEvalStorage.time);
   const router = useRouter();
-  const [, setUsingChatGPTEvalStorage] = useSessionStorage<ExperimentEval>(
-    EXPERIMENT_EVAL_KEY.USING_CHAT_GPT,
-  );
 
   const onClickSendButton = () => {
     setUsingChatGPTEvalStorage({
+      time: time,
       easeOfUse: evalValue[0] + 1, // 0 ~ 4 -> 1 ~ 5
     });
     router.push('/experiment');
@@ -26,7 +28,15 @@ export const UsingChatGPTEval = () => {
 
   return (
     <div>
-      <div className="space-y-2">
+      <div className="space-y-1">
+        <Label>時間</Label>
+        <Input
+          value={time}
+          type="number"
+          onChange={(e) => setTime(Number(e.target.value))}
+        />
+      </div>
+      <div className="mt-8 space-y-2">
         <Label>使いやすさ</Label>
         <Slider
           value={evalValue}
@@ -35,7 +45,7 @@ export const UsingChatGPTEval = () => {
           step={1}
         />
       </div>
-      <div className="mt-8 flex justify-center">
+      <div className="mt-12 flex justify-center">
         <Button onClick={onClickSendButton}>送信</Button>
       </div>
     </div>

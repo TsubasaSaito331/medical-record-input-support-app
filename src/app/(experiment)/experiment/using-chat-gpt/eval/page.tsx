@@ -5,7 +5,7 @@ import { UsingChatGPTEval } from './_components/using-chat-gpt-eval';
 export default function UsingChatGPTEvalPage() {
   return (
     <div>
-      <PageTitle>評価: ChatGPT利用を利用した手法</PageTitle>
+      <PageTitle>評価: ChatGPTを利用した手法</PageTitle>
       <div className="mt-8">
         <UsingChatGPTEval />
       </div>

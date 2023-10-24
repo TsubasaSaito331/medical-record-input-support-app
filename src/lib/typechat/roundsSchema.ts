@@ -1,8 +1,8 @@
 export interface RoundsFromChatGPT {
-  TEMPERATURE: number;
-  PULSE: number;
-  BLOOD_PRESSURE_HIGH: number;
-  BLOOD_PRESSURE_LOW: number;
-  RESPIRATION: number;
-  NOTE: string;
+  TEMPERATURE?: number | null;
+  PULSE?: number | null;
+  BLOOD_PRESSURE_HIGH?: number | null;
+  BLOOD_PRESSURE_LOW?: number | null;
+  RESPIRATION?: number | null;
+  NOTE?: string | null;
 }
