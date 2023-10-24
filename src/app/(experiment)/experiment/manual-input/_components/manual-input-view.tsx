@@ -14,18 +14,12 @@ import { useTimer } from '@/hooks/useTimer';
 
 import { ExperimentStartAlertDialog } from '../../_components/experiment-start-alert-dialog';
 
-interface Props {
-  mode:
-    | typeof EXPERIMENT_EVAL_KEY.MANUAL_INPUT_PC
-    | typeof EXPERIMENT_EVAL_KEY.MANUAL_INPUT_MOBILE;
-}
-
-export const ManualInputView = ({ mode }: Props) => {
+export const ManualInputView = () => {
   const pathname = usePathname();
   const router = useRouter();
   const { startTimer, stopTimer, time } = useTimer();
   const [refSyncEvalStorage, setRefSyncEvalStorage] =
-    useSessionStorage<ExperimentEval>(mode);
+    useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.MANUAL_INPUT);
   const [dialogOpen, setDialogOpen] = useState(true);
 
   // Input states
@@ -61,11 +55,7 @@ export const ManualInputView = ({ mode }: Props) => {
   return (
     <>
       <ExperimentStartAlertDialog
-        title={
-          mode === EXPERIMENT_EVAL_KEY.MANUAL_INPUT_PC
-            ? '手動入力（PC）'
-            : '手動入力（モバイル）'
-        }
+        title="手動入力"
         open={dialogOpen}
         onClose={onCloseDialog}
       />

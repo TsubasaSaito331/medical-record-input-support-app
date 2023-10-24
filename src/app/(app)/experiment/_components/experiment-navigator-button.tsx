@@ -21,11 +21,8 @@ function ExperimentNavigatorButton() {
   const [usingChatGPTEval] = useSessionStorage<ExperimentEval | undefined>(
     EXPERIMENT_EVAL_KEY.USING_CHAT_GPT,
   );
-  const [manualInputPCEval] = useSessionStorage<ExperimentEval | undefined>(
-    EXPERIMENT_EVAL_KEY.MANUAL_INPUT_PC,
-  );
-  const [manualInputMobileEval] = useSessionStorage<ExperimentEval | undefined>(
-    EXPERIMENT_EVAL_KEY.MANUAL_INPUT_MOBILE,
+  const [manualInputEval] = useSessionStorage<ExperimentEval | undefined>(
+    EXPERIMENT_EVAL_KEY.MANUAL_INPUT,
   );
 
   const nextExperimentPagePath = (() => {
@@ -41,11 +38,8 @@ function ExperimentNavigatorButton() {
       if (usingChatGPTEval !== undefined) {
         ignorePaths.push(EXPERIMENT_TARGET_PATH.USING_CHAT_GPT);
       }
-      if (manualInputPCEval !== undefined) {
+      if (manualInputEval !== undefined) {
         ignorePaths.push(EXPERIMENT_TARGET_PATH.MANUAL_INPUT_PC);
-      }
-      if (manualInputMobileEval !== undefined) {
-        ignorePaths.push(EXPERIMENT_TARGET_PATH.MANUAL_INPUT_MOBILE);
       }
       return !ignorePaths.includes(path);
     });
@@ -67,13 +61,7 @@ function ExperimentNavigatorButton() {
     );
   }
 
-  if (
-    !modiSyncEval &&
-    !refSyncEval &&
-    !usingChatGPTEval &&
-    !manualInputPCEval &&
-    !manualInputMobileEval
-  ) {
+  if (!modiSyncEval && !refSyncEval && !usingChatGPTEval && !manualInputEval) {
     return (
       <Button size="lg" asChild>
         <Link href={nextExperimentPagePath}>実験を始める</Link>

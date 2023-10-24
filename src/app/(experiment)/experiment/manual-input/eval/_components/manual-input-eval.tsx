@@ -8,18 +8,14 @@ import { useSessionStorage } from 'react-use';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
-import type { ExperimentEval } from '@/constants/experiment';
-import type { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
+import {
+  EXPERIMENT_EVAL_KEY,
+  type ExperimentEval,
+} from '@/constants/experiment';
 
-interface Props {
-  mode:
-    | typeof EXPERIMENT_EVAL_KEY.MANUAL_INPUT_PC
-    | typeof EXPERIMENT_EVAL_KEY.MANUAL_INPUT_MOBILE;
-}
-
-export const ManualInputEval = ({ mode }: Props) => {
+export const ManualInputEval = () => {
   const [manualInputEvalStorage, setManualInputEvalStorage] =
-    useSessionStorage<ExperimentEval>(mode);
+    useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.MANUAL_INPUT);
   const [evalValue, setEvalValue] = useState([2]);
   const [time, setTime] = useState(manualInputEvalStorage.time);
   const router = useRouter();
