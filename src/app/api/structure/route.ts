@@ -1,5 +1,3 @@
-import { NextResponse } from 'next/server';
-
 import { ROUNDS_ITEM_LABELS } from '@/constants/rounds';
 import { translator } from '@/lib/typechat';
 
@@ -8,18 +6,24 @@ interface StructureBody {
 }
 
 export async function POST(request: Request) {
+  console.log('POST /api/structure');
   const body = (await request.json()) as StructureBody;
 
-  const response =
-    await translator.translate(`以下の本文、ルール、項目から、項目に関連度の高い情報を抽出せよ。
-  ## 本文
-  ${body.text}
-  ## ルール
-  - 抽出した情報が文だった場合、文末を整える（例：「改善されており」→「改善されている」）
-  - 数字が入った情報は数字のみ抽出する（例:「1,000円」→「1,000」）
-  ## 項目
-  ${ROUNDS_ITEM_LABELS.join('\n')}
-  `);
+  try {
+    const response =
+      await translator.translate(`以下の本文、ルール、項目から、項目に関連度の高い情報を抽出せよ。
+    ## 本文
+    ${body.text}
+    ## ルール
+    - 抽出した情報が文だった場合、文末を整える（例：「改善されており」→「改善されている」）
+    - 数字が入った情報は数字のみ抽出する（例:「1,000円」→「1,000」）
+    ## 項目
+    ${ROUNDS_ITEM_LABELS.join('\n')}
+    `);
 
-  return NextResponse.json(response);
+    return Response.json(response);
+  } catch (e) {
+    console.log(e);
+    return Response.json({ error: e }, { status: 500 });
+  }
 }
