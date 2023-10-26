@@ -94,8 +94,11 @@ export const UsingChatGPTView = () => {
         data.RESPIRATION && setRespiration(data.RESPIRATION.toString());
         data.NOTE && setNote(data.NOTE);
       } catch (e) {
-        console.log(e);
-        return;
+        toast({
+          variant: 'destructive',
+          title: '構造化に失敗しました',
+          description: 'もう一度お試しください',
+        });
       } finally {
         setStructuring(false);
       }
