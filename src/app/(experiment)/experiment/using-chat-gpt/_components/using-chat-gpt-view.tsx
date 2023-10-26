@@ -9,6 +9,7 @@ import { RecordingButton } from '@/components/recording-button';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useToast } from '@/components/ui/use-toast';
 import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 import { ROUNDS_ITEM_LABEL } from '@/constants/rounds';
@@ -31,6 +32,7 @@ export const UsingChatGPTView = () => {
     useSessionStorage<ExperimentEval>(EXPERIMENT_EVAL_KEY.USING_CHAT_GPT);
   const [dialogOpen, setDialogOpen] = useState(true);
   const [structuring, setStructuring] = useState(false);
+  const { toast } = useToast();
 
   // Input states
   const [temperature, setTemperature] = useState('');
@@ -73,7 +75,11 @@ export const UsingChatGPTView = () => {
         setStructuring(true);
         const result = await structureFromChatGPT({ text: value });
         if (result.success === false) {
-          // TODO: ツールチップ表示
+          toast({
+            variant: 'destructive',
+            title: '構造化に失敗しました',
+            description: 'もう一度お試しください',
+          });
           return;
         }
 
