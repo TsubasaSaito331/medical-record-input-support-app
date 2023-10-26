@@ -107,7 +107,7 @@ export const UsingChatGPTView = () => {
     }
 
     void fetchData();
-  }, [recording, setValue, value]);
+  }, [recording, setValue, toast, value]);
 
   return (
     <>
