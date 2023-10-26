@@ -1,6 +1,6 @@
 import type { Result } from 'typechat';
 
-import type { RoundsFromChatGPT } from '../typechat/roundsSchema';
+import type { RoundsFromChatGPT } from '../typechat';
 
 export const structureFromChatGPT = async (args: { text: string }) => {
   const res = await fetch('/api/structure', {
