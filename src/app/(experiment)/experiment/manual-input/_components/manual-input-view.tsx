@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
-import { ROUNDS_ITEM_LABEL } from '@/constants/rounds';
+import { ROUNDS_ITEM_LABEL_WITH_UNIT } from '@/constants/rounds';
 import { useTimer } from '@/hooks/useTimer';
 
 import { ExperimentStartAlertDialog } from '../../_components/experiment-start-alert-dialog';
@@ -63,39 +63,39 @@ export const ManualInputView = () => {
       <div className="space-y-4">
         <p className="text-sm">所要時間: {Math.floor(time)}秒</p>
         <div>
-          <Label>{ROUNDS_ITEM_LABEL.TEMPERATURE}</Label>
+          <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.TEMPERATURE}</Label>
           <Input
             value={temperature}
             onChange={(e) => setTemperature(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABEL.PULSE}</Label>
+          <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.PULSE}</Label>
           <Input value={pulse} onChange={(e) => setPulse(e.target.value)} />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABEL.BLOOD_PRESSURE_HIGH}</Label>
+          <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.BLOOD_PRESSURE_HIGH}</Label>
           <Input
             value={bloodPressureHigh}
             onChange={(e) => setBloodPressureHigh(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABEL.BLOOD_PRESSURE_LOW}</Label>
+          <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.BLOOD_PRESSURE_LOW}</Label>
           <Input
             value={bloodPressureLow}
             onChange={(e) => setBloodPressureLow(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABEL.RESPIRATION}</Label>
+          <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.RESPIRATION}</Label>
           <Input
             value={respiration}
             onChange={(e) => setRespiration(e.target.value)}
           />
         </div>
         <div>
-          <Label>{ROUNDS_ITEM_LABEL.NOTE}</Label>
+          <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.NOTE}</Label>
           <Input value={note} onChange={(e) => setNote(e.target.value)} />
         </div>
       </div>
