@@ -70,14 +70,11 @@ export const RefSyncView = () => {
       />
       <div className="space-y-8">
         <p className="text-sm">所要時間: {Math.floor(time)}秒</p>
-        {recording || originalValue.length === 0 ? (
-          <div>{originalValue + transcript}</div>
-        ) : (
-          <Textarea
-            value={originalValue}
-            onChange={(e) => setOriginalValue(e.target.value)}
-          />
-        )}
+        {recording && <div>{transcript}</div>}
+        <Textarea
+          value={originalValue}
+          onChange={(e) => setOriginalValue(e.target.value)}
+        />
         <section className="space-y-8">
           <div className="space-y-1">
             <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.TEMPERATURE}</Label>
