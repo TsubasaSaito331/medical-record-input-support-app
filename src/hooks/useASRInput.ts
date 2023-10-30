@@ -55,7 +55,12 @@ export const useASRInput = ({ target }: { target: ASRInputTarget }) => {
 
 const ASRInputTargets = [
   'MAIN',
-  // NOTE: 同じページで複数の音声認識を行う場合は、ここに追加する
+  'TEMPERATURE',
+  'PULSE',
+  'BLOOD_PRESSURE_HIGH',
+  'BLOOD_PRESSURE_LOW',
+  'RESPIRATION',
+  'NOTE',
 ] as const;
 export type ASRInputTarget = (typeof ASRInputTargets)[number];
 

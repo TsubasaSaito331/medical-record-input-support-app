@@ -30,6 +30,9 @@ export const ExperimentResultTable = () => {
   const [manualInputEval] = useSessionStorage<ExperimentEval | undefined>(
     EXPERIMENT_EVAL_KEY.MANUAL_INPUT,
   );
+  const [simpleVoiceInputEval] = useSessionStorage<ExperimentEval | undefined>(
+    EXPERIMENT_EVAL_KEY.SIMPLE_VOICE_INPUT,
+  );
 
   if (!modiSyncEval && !refSyncEval && !usingChatGPTEval && !manualInputEval) {
     return <p>実験結果はありません</p>;
@@ -52,6 +55,16 @@ export const ExperimentResultTable = () => {
       </TableHeader>
       <TableBody>
         <TableRow>
+          <TableCell>Manual Input</TableCell>
+          <TableCell>{manualInputEval?.easeOfUse || '-'}</TableCell>
+          <TableCell>{manualInputEval?.time || '-'}</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Simple Voice Input</TableCell>
+          <TableCell>{simpleVoiceInputEval?.easeOfUse || '-'}</TableCell>
+          <TableCell>{simpleVoiceInputEval?.time || '-'}</TableCell>
+        </TableRow>
+        <TableRow>
           <TableCell>Modi Sync</TableCell>
           <TableCell>{modiSyncEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{modiSyncEval?.time || '-'}</TableCell>
@@ -65,11 +78,6 @@ export const ExperimentResultTable = () => {
           <TableCell>Using ChatGPT</TableCell>
           <TableCell>{usingChatGPTEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{usingChatGPTEval?.time || '-'}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Manual Input</TableCell>
-          <TableCell>{manualInputEval?.easeOfUse || '-'}</TableCell>
-          <TableCell>{manualInputEval?.time || '-'}</TableCell>
         </TableRow>
       </TableBody>
     </Table>
