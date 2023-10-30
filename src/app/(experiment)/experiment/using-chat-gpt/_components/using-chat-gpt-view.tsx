@@ -173,7 +173,11 @@ export const UsingChatGPTView = () => {
         )}
       </div>
       <div className="fixed bottom-8 right-8 z-50">
-        <RecordingButton onClick={toggleRecording} recording={recording} />
+        <RecordingButton
+          onClick={toggleRecording}
+          recording={recording}
+          loading={structuring}
+        />
       </div>
     </>
   );
