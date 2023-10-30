@@ -12,7 +12,7 @@ import { Textarea } from '@/components/ui/textarea';
 import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 import { ROUNDS_ITEM_LABEL_WITH_UNIT } from '@/constants/rounds';
-import { useRefSync } from '@/hooks/useRefSync';
+import { ROUNDS_KEY_WORDS, useRefSync } from '@/hooks/useRefSync';
 import { useTimer } from '@/hooks/useTimer';
 
 import { RefSyncInputs } from './ref-sync-inputs';
@@ -83,6 +83,7 @@ export const RefSyncView = () => {
             <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.TEMPERATURE}</Label>
             <RefSyncInputs
               originalText={originalValue}
+              startText={ROUNDS_KEY_WORDS.TEMPERATURE}
               pickUpPositions={temperaturePositions}
               onChange={setOriginalValue}
             />
@@ -91,6 +92,7 @@ export const RefSyncView = () => {
             <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.PULSE}</Label>
             <RefSyncInputs
               originalText={originalValue}
+              startText={ROUNDS_KEY_WORDS.PULSE}
               pickUpPositions={pulsePositions}
               onChange={setOriginalValue}
             />
@@ -99,6 +101,7 @@ export const RefSyncView = () => {
             <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.BLOOD_PRESSURE_HIGH}</Label>
             <RefSyncInputs
               originalText={originalValue}
+              startText={ROUNDS_KEY_WORDS.BLOOD_PRESSURE_HIGH}
               pickUpPositions={bloodPressureHighPositions}
               onChange={setOriginalValue}
             />
@@ -107,6 +110,7 @@ export const RefSyncView = () => {
             <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.BLOOD_PRESSURE_LOW}</Label>
             <RefSyncInputs
               originalText={originalValue}
+              startText={ROUNDS_KEY_WORDS.BLOOD_PRESSURE_LOW}
               pickUpPositions={bloodPressureLowPositions}
               onChange={setOriginalValue}
             />
@@ -115,6 +119,7 @@ export const RefSyncView = () => {
             <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.RESPIRATION}</Label>
             <RefSyncInputs
               originalText={originalValue}
+              startText={ROUNDS_KEY_WORDS.RESPIRATION}
               pickUpPositions={respirationPositions}
               onChange={setOriginalValue}
             />
@@ -123,6 +128,7 @@ export const RefSyncView = () => {
             <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.NOTE}</Label>
             <RefSyncInputs
               originalText={originalValue}
+              startText={ROUNDS_KEY_WORDS.NOTE}
               pickUpPositions={notePositions}
               onChange={setOriginalValue}
             />

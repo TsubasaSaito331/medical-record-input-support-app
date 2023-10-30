@@ -1,14 +1,16 @@
 import { RemovableInput } from '@/components/removable-input';
-import type { PickUpPosition } from '@/hooks/useRefSync';
+import type { PickUpPosition, RoundsKeyWordValues } from '@/hooks/useRefSync';
 
 interface Props {
   originalText: string;
+  startText: RoundsKeyWordValues;
   pickUpPositions: PickUpPosition[];
   onChange: (value: string) => void;
 }
 
 export const RefSyncInputs = ({
   originalText,
+  startText,
   pickUpPositions,
   onChange,
 }: Props) => {
@@ -20,18 +22,22 @@ export const RefSyncInputs = ({
             // NOTE: フォームのフォーカスをそのままにしたい為indexをkeyに入れている
             key={index}
             value={originalText.substring(
-              position.startIndex,
+              position.startIndex + startText.length,
               position.endIndex,
             )}
             onChange={(e) => {
               const text = originalText;
               const endIndex =
-                position.endIndex - position.startIndex > e.target.value.length
-                  ? position.startIndex + e.target.value.length + 1
+                position.endIndex - position.startIndex + startText.length >
+                e.target.value.length
+                  ? position.startIndex +
+                    startText.length +
+                    e.target.value.length +
+                    1
                   : position.endIndex;
 
               const changedText =
-                text.slice(0, position.startIndex) +
+                text.slice(0, position.startIndex + startText.length) +
                 e.target.value +
                 text.slice(endIndex);
               onChange(changedText);

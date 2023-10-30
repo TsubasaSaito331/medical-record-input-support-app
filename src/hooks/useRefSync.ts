@@ -5,7 +5,7 @@ import type { ROUNDS_ITEM } from '@/constants/rounds';
 import { useASRInput } from './useASRInput';
 
 /* 関連するカルテ項目をピックアップするためのキーワード **/
-const ROUNDS_KEY_WORDS = {
+export const ROUNDS_KEY_WORDS = {
   TEMPERATURE: '体温は',
   PULSE: '脈拍は',
   BLOOD_PRESSURE_HIGH: '血圧上は',
@@ -13,6 +13,9 @@ const ROUNDS_KEY_WORDS = {
   RESPIRATION: '呼吸数は',
   NOTE: '補足事項は',
 } as const satisfies Record<ROUNDS_ITEM, string>;
+
+export type RoundsKeyWordValues =
+  (typeof ROUNDS_KEY_WORDS)[keyof typeof ROUNDS_KEY_WORDS];
 
 const ROUNDS_KEY_WORDS_LIST = Object.values(ROUNDS_KEY_WORDS);
 
