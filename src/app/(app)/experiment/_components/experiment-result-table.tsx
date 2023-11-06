@@ -18,23 +18,23 @@ import type { ExperimentEval } from '@/constants/experiment';
 import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 
 export const ExperimentResultTable = () => {
-  const [modiSyncEval] = useSessionStorage<ExperimentEval | undefined>(
-    EXPERIMENT_EVAL_KEY.MODI_SYNC,
-  );
-  const [refSyncEval] = useSessionStorage<ExperimentEval | undefined>(
-    EXPERIMENT_EVAL_KEY.REF_SYNC,
-  );
-  const [usingChatGPTEval] = useSessionStorage<ExperimentEval | undefined>(
-    EXPERIMENT_EVAL_KEY.USING_CHAT_GPT,
-  );
+  // const [modiSyncEval] = useSessionStorage<ExperimentEval | undefined>(
+  //   EXPERIMENT_EVAL_KEY.MODI_SYNC,
+  // );
+  // const [refSyncEval] = useSessionStorage<ExperimentEval | undefined>(
+  //   EXPERIMENT_EVAL_KEY.REF_SYNC,
+  // );
   const [manualInputEval] = useSessionStorage<ExperimentEval | undefined>(
     EXPERIMENT_EVAL_KEY.MANUAL_INPUT,
   );
   const [simpleVoiceInputEval] = useSessionStorage<ExperimentEval | undefined>(
     EXPERIMENT_EVAL_KEY.SIMPLE_VOICE_INPUT,
   );
+  const [usingChatGPTEval] = useSessionStorage<ExperimentEval | undefined>(
+    EXPERIMENT_EVAL_KEY.USING_CHAT_GPT,
+  );
 
-  if (!modiSyncEval && !refSyncEval && !usingChatGPTEval && !manualInputEval) {
+  if (!usingChatGPTEval && !manualInputEval && !simpleVoiceInputEval) {
     return <p>実験結果はありません</p>;
   }
 
@@ -55,27 +55,17 @@ export const ExperimentResultTable = () => {
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableCell>Manual Input</TableCell>
+          <TableCell>従来の入力（手動入力）</TableCell>
           <TableCell>{manualInputEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{manualInputEval?.time || '-'}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Simple Voice Input</TableCell>
+          <TableCell>項目別の音声入力</TableCell>
           <TableCell>{simpleVoiceInputEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{simpleVoiceInputEval?.time || '-'}</TableCell>
         </TableRow>
         <TableRow>
-          <TableCell>Modi Sync</TableCell>
-          <TableCell>{modiSyncEval?.easeOfUse || '-'}</TableCell>
-          <TableCell>{modiSyncEval?.time || '-'}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Ref Sync</TableCell>
-          <TableCell>{refSyncEval?.easeOfUse || '-'}</TableCell>
-          <TableCell>{refSyncEval?.time || '-'}</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Using ChatGPT</TableCell>
+          <TableCell>項目横断的な音声入力</TableCell>
           <TableCell>{usingChatGPTEval?.easeOfUse || '-'}</TableCell>
           <TableCell>{usingChatGPTEval?.time || '-'}</TableCell>
         </TableRow>

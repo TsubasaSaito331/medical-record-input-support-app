@@ -1,14 +1,10 @@
-import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 import { PageTitle } from '@/components/page-title';
+import { Button } from '@/components/ui/button';
+import { EXPERIMENT_TARGET_PATH } from '@/constants/experiment';
 
 import { ExperimentResultTable } from './_components/experiment-result-table';
-
-// 乱数を使って次のページを決定するので、SSRを無効化する
-const DynamicExperimentNavigatorButton = dynamic(
-  () => import('./_components/experiment-navigator-button'),
-  { ssr: false },
-);
 
 export default function Experiment() {
   return (
@@ -34,8 +30,22 @@ export default function Experiment() {
           <ExperimentResultTable />
         </div>
       </section>
-      <div className="mt-12 flex justify-center">
-        <DynamicExperimentNavigatorButton />
+      <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <Button size="lg" asChild>
+          <Link href={EXPERIMENT_TARGET_PATH.MANUAL_INPUT}>
+            従来の入力（手動入力）
+          </Link>
+        </Button>
+        <Button size="lg" asChild>
+          <Link href={EXPERIMENT_TARGET_PATH.SIMPLE_VOICE_INPUT}>
+            項目別の音声入力
+          </Link>
+        </Button>
+        <Button size="lg" asChild>
+          <Link href={EXPERIMENT_TARGET_PATH.USING_CHAT_GPT}>
+            項目横断的な音声入力
+          </Link>
+        </Button>
       </div>
     </div>
   );
