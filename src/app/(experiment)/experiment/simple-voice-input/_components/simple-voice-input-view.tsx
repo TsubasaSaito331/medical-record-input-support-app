@@ -126,6 +126,7 @@ export const SimpleVoiceInputView = () => {
               <Input
                 value={temperatureValue}
                 onChange={(e) => setTemperatureValue(e.target.value)}
+                inputMode="numeric"
               />
               <RecordingButton
                 recording={temperatureRecording}
@@ -144,6 +145,7 @@ export const SimpleVoiceInputView = () => {
               <Input
                 value={pulseValue}
                 onChange={(e) => setPulseValue(e.target.value)}
+                inputMode="numeric"
               />
               <RecordingButton
                 recording={pulseRecording}
@@ -162,6 +164,7 @@ export const SimpleVoiceInputView = () => {
               <Input
                 value={bloodPressureHighValue}
                 onChange={(e) => setBloodPressureHighValue(e.target.value)}
+                inputMode="numeric"
               />
               <RecordingButton
                 recording={bloodPressureHighRecording}
@@ -180,6 +183,7 @@ export const SimpleVoiceInputView = () => {
               <Input
                 value={bloodPressureLowValue}
                 onChange={(e) => setBloodPressureLowValue(e.target.value)}
+                inputMode="numeric"
               />
               <RecordingButton
                 recording={bloodPressureLowRecording}
@@ -198,6 +202,7 @@ export const SimpleVoiceInputView = () => {
               <Input
                 value={respirationValue}
                 onChange={(e) => setRespirationValue(e.target.value)}
+                inputMode="numeric"
               />
               <RecordingButton
                 recording={respirationRecording}

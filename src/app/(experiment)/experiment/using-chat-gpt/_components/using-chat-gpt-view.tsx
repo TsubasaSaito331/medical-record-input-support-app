@@ -124,17 +124,23 @@ export const UsingChatGPTView = () => {
           <Input
             value={temperature}
             onChange={(e) => setTemperature(e.target.value)}
+            inputMode="numeric"
           />
         </div>
         <div>
           <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.PULSE}</Label>
-          <Input value={pulse} onChange={(e) => setPulse(e.target.value)} />
+          <Input
+            value={pulse}
+            onChange={(e) => setPulse(e.target.value)}
+            inputMode="numeric"
+          />
         </div>
         <div>
           <Label>{ROUNDS_ITEM_LABEL_WITH_UNIT.BLOOD_PRESSURE_HIGH}</Label>
           <Input
             value={bloodPressureHigh}
             onChange={(e) => setBloodPressureHigh(e.target.value)}
+            inputMode="numeric"
           />
         </div>
         <div>
@@ -142,6 +148,7 @@ export const UsingChatGPTView = () => {
           <Input
             value={bloodPressureLow}
             onChange={(e) => setBloodPressureLow(e.target.value)}
+            inputMode="numeric"
           />
         </div>
         <div>
@@ -149,6 +156,7 @@ export const UsingChatGPTView = () => {
           <Input
             value={respiration}
             onChange={(e) => setRespiration(e.target.value)}
+            inputMode="numeric"
           />
         </div>
         <div>
