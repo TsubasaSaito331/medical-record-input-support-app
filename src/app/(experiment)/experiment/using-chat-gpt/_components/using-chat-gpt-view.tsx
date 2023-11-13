@@ -23,6 +23,7 @@ export const UsingChatGPTView = () => {
   const { value, setValue, toggleRecording, transcript, recording } =
     useASRInput({
       target: 'MAIN',
+      continuous: true,
     });
 
   const pathname = usePathname();

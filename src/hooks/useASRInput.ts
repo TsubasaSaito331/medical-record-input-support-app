@@ -7,7 +7,13 @@ import SpeechRecognition, {
 
 import { useStaticSWR } from './useStaticSWR';
 
-export const useASRInput = ({ target }: { target: ASRInputTarget }) => {
+export const useASRInput = ({
+  target,
+  continuous,
+}: {
+  target: ASRInputTarget;
+  continuous?: boolean;
+}) => {
   const { asrInputTarget, setASRInputTarget } = useASRInputTarget();
   const [inputValue, setInputValue] = useState('');
   const { transcript, listening, finalTranscript, resetTranscript } =
@@ -23,7 +29,7 @@ export const useASRInput = ({ target }: { target: ASRInputTarget }) => {
       void SpeechRecognition.stopListening();
     } else {
       void SpeechRecognition.startListening({
-        continuous: true,
+        continuous: continuous,
         language: 'ja-JP',
       });
     }

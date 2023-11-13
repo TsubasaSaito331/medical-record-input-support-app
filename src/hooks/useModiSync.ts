@@ -20,6 +20,7 @@ export const useModiSync = () => {
   const { value, setValue, toggleRecording, transcript, recording } =
     useASRInput({
       target: 'MAIN',
+      continuous: true,
     });
 
   const [temperature, setTemperature] = useState('');
