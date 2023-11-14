@@ -32,6 +32,7 @@ export const SimpleVoiceInputView = () => {
     recording: temperatureRecording,
   } = useASRInput({
     target: 'TEMPERATURE',
+    continuous: true,
   });
 
   const {
@@ -42,6 +43,7 @@ export const SimpleVoiceInputView = () => {
     recording: pulseRecording,
   } = useASRInput({
     target: 'PULSE',
+    continuous: true,
   });
 
   const {
@@ -52,6 +54,7 @@ export const SimpleVoiceInputView = () => {
     recording: bloodPressureHighRecording,
   } = useASRInput({
     target: 'BLOOD_PRESSURE_HIGH',
+    continuous: true,
   });
 
   const {
@@ -62,6 +65,7 @@ export const SimpleVoiceInputView = () => {
     recording: bloodPressureLowRecording,
   } = useASRInput({
     target: 'BLOOD_PRESSURE_LOW',
+    continuous: true,
   });
 
   const {
@@ -72,6 +76,7 @@ export const SimpleVoiceInputView = () => {
     recording: respirationRecording,
   } = useASRInput({
     target: 'RESPIRATION',
+    continuous: true,
   });
 
   const {
@@ -82,6 +87,7 @@ export const SimpleVoiceInputView = () => {
     recording: noteRecording,
   } = useASRInput({
     target: 'NOTE',
+    continuous: true,
   });
 
   const buttonDisabled =
