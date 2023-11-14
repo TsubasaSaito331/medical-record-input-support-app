@@ -15,7 +15,7 @@ import { EXPERIMENT_EVAL_KEY } from '@/constants/experiment';
 import { ROUNDS_ITEM_LABEL_WITH_UNIT } from '@/constants/rounds';
 import { useASRInput } from '@/hooks/useASRInput';
 import { useTimer } from '@/hooks/useTimer';
-import { structureFromChatGPT } from '@/lib/api/structure';
+import { roundsFromChatGPT } from '@/lib/api/rounds';
 
 import { ExperimentStartAlertDialog } from '../../_components/experiment-start-alert-dialog';
 
@@ -74,7 +74,7 @@ export const UsingChatGPTView = () => {
 
       try {
         setStructuring(true);
-        const result = await structureFromChatGPT({ text: value });
+        const result = await roundsFromChatGPT({ text: value });
         if (result.success === false) {
           toast({
             variant: 'destructive',

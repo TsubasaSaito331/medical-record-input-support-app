@@ -6,7 +6,6 @@ interface StructureBody {
 }
 
 export async function POST(request: Request) {
-  console.log('POST /api/structure');
   const body = (await request.json()) as StructureBody;
 
   try {
