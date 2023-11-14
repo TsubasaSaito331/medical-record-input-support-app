@@ -77,12 +77,12 @@ export const SOAPView = () => {
                 onChange={(e) => {
                   const newSubjective = [...subjective];
                   newSubjective[i] = e.target.value;
-                  setObjective(newSubjective);
+                  setSubjective(newSubjective);
                 }}
                 onRemove={() => {
                   const newSubjective = [...subjective];
                   newSubjective.splice(i, 1);
-                  setObjective(newSubjective);
+                  setSubjective(newSubjective);
                 }}
               />
             ))}
@@ -99,12 +99,12 @@ export const SOAPView = () => {
                   onChange={(e) => {
                     const newObjective = [...objective];
                     newObjective[i] = e.target.value;
-                    setSubjective(newObjective);
+                    setObjective(newObjective);
                   }}
                   onRemove={() => {
                     const newObjective = [...objective];
                     newObjective.splice(i, 1);
-                    setSubjective(newObjective);
+                    setObjective(newObjective);
                   }}
                 />
               ))}
