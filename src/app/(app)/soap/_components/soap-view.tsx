@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
 import { RecordingButton } from '@/components/recording-button';
 import { RemovableInput } from '@/components/removable-input';
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/components/ui/use-toast';
 import { useASRInput } from '@/hooks/useASRInput';
 import { soapFromChatGPT } from '@/lib/api/soap';
+import type { Summary } from '@/lib/typechat/soap';
 
 export const modelValue =
   'おはようございます調子はいかがですかおはようございますえーと少し頭痛がします頭痛ですか昨晩はよく眠れましたかそうですね何度か目が覚めてしまいました分かりました後ほど頭痛の薬を持ってきますねそれと体温を測りたいと思いますはいお願いします体温は37.8℃ですね少し高めです今のところ寒気や他の症状はありますかえーと寒気は特にないですが背中が痛いです背中ですか位置はどの辺りでしょうかうーん腰のあたりです分かりました後ほどマッサージや温熱治療を検討してみますね血圧も測りたいと思いますはいよろしくお願いします血圧は130/85です少し高めなので適度な運動や食事の改善を検討しましょう水分は1日にどのくらいとってますか1.5リットルくらいですかよくわかってないけど多分そのくらいですわかりました国循から1日2リットルの指示が出ているのでしっかり2リットルを飲むようにしましょうほかに何かきになることはありますか夜間にトイレに行くことが多くてあまりよく眠れていません利尿剤が効いてるんですかねそれはたぶん年のせいと飲む水の量が増えたからですねもしどうしても気になるようなら泌尿器科を受診してくださいそれでは本日の回診は終了ですお疲れ様です';
@@ -21,8 +23,11 @@ export const SOAPView = () => {
       continuous: true,
     });
 
-  const [subjective, setSubjective] = useState<string[]>(['']);
-  const [objective, setObjective] = useState<string[]>(['']);
+  const [subjective, setSubjective] = useState<string[]>([]);
+  const [objective, setObjective] = useState<string[]>([]);
+  const [assessment, setAssessment] = useState<string[]>([]);
+  const [plan, setPlan] = useState<string[]>([]);
+  const [summary, setSummary] = useState<Summary>([]);
   const [structuring, setStructuring] = useState(false);
 
   useEffect(() => {
@@ -45,8 +50,13 @@ export const SOAPView = () => {
 
         const { data } = result;
 
+        console.log(data);
+
         data.SUBJECTIVE && setSubjective(data.SUBJECTIVE);
         data.OBJECTIVE && setObjective(data.OBJECTIVE);
+        data.ASSESSMENT && setAssessment(data.ASSESSMENT);
+        data.PLAN && setPlan(data.PLAN);
+        data.SUMMARY && setSummary(data.SUMMARY);
       } catch (e) {
         toast({
           variant: 'destructive',
@@ -67,6 +77,30 @@ export const SOAPView = () => {
     <>
       <div className="space-y-4">
         {recording ? <div>{value + transcript}</div> : <div>{value}</div>}
+
+        {/* Summary */}
+        {summary.length > 0 && (
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>要約を見る</Button>
+            </DialogTrigger>
+            <DialogContent>
+              <div className="space-y-4">
+                {summary.map((s, i) => (
+                  <div key={i}>
+                    {s.speaker === 'patient' ? (
+                      <p>患者の発言: {s.text}</p>
+                    ) : (
+                      <p>医者の発言: {s.text}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
+        )}
+
+        {/* Subjective */}
         <div>
           <Label>Subjective</Label>
           <div className="space-y-3">
@@ -88,46 +122,89 @@ export const SOAPView = () => {
             ))}
           </div>
         </div>
+
+        {/* Objective */}
         <div>
-          <div>
-            <Label>Objective</Label>
-            <div className="space-y-3">
-              {objective.map((o, i) => (
-                <RemovableInput
-                  key={i}
-                  value={o}
-                  onChange={(e) => {
-                    const newObjective = [...objective];
-                    newObjective[i] = e.target.value;
-                    setObjective(newObjective);
-                  }}
-                  onRemove={() => {
-                    const newObjective = [...objective];
-                    newObjective.splice(i, 1);
-                    setObjective(newObjective);
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-          <div className="mt-8 flex items-center justify-center">
-            <div className="mt-8 flex items-center justify-center">
-              {structuring ? (
-                <Button size="lg" disabled>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  構造化中
-                </Button>
-              ) : (
-                <Button size="lg" onClick={() => setValue(modelValue)}>
-                  モデルケースを試す
-                </Button>
-              )}
-            </div>
+          <Label>Objective</Label>
+          <div className="space-y-3">
+            {objective.map((o, i) => (
+              <RemovableInput
+                key={i}
+                value={o}
+                onChange={(e) => {
+                  const newObjective = [...objective];
+                  newObjective[i] = e.target.value;
+                  setObjective(newObjective);
+                }}
+                onRemove={() => {
+                  const newObjective = [...objective];
+                  newObjective.splice(i, 1);
+                  setObjective(newObjective);
+                }}
+              />
+            ))}
           </div>
         </div>
+
+        {/* Assessment */}
         <div>
-          <Label>モデルケース</Label>
-          <div className="rounded bg-slate-200 p-2 text-xs">{modelValue}</div>
+          <Label>Assessment</Label>
+          <div className="space-y-3">
+            {assessment.map((a, i) => (
+              <RemovableInput
+                key={i}
+                value={a}
+                onChange={(e) => {
+                  const newAssessment = [...assessment];
+                  newAssessment[i] = e.target.value;
+                  setAssessment(newAssessment);
+                }}
+                onRemove={() => {
+                  const newAssessment = [...assessment];
+                  newAssessment.splice(i, 1);
+                  setAssessment(newAssessment);
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Plan */}
+        <div>
+          <Label>Plan</Label>
+          <div className="space-y-3">
+            {plan.map((p, i) => (
+              <RemovableInput
+                key={i}
+                value={p}
+                onChange={(e) => {
+                  const newPlan = [...plan];
+                  newPlan[i] = e.target.value;
+                  setPlan(newPlan);
+                }}
+                onRemove={() => {
+                  const newPlan = [...plan];
+                  newPlan.splice(i, 1);
+                  setPlan(newPlan);
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex items-center justify-center">
+          <div className="mt-8 flex items-center justify-center">
+            {structuring ? (
+              <Button size="lg" disabled>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                構造化中
+              </Button>
+            ) : (
+              <Button size="lg" onClick={() => setValue(modelValue)}>
+                モデルケースを試す
+              </Button>
+            )}
+          </div>
         </div>
       </div>
       <div className="fixed bottom-8 right-8 z-50">
