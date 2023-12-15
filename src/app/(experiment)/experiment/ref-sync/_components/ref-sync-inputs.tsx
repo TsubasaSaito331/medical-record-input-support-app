@@ -1,4 +1,4 @@
-import { RemovableInput } from '@/components/removable-input';
+import { EditableInputWithMenu } from '@/components/editable-input-with-menu';
 import type { PickUpPosition, RoundsKeyWordValues } from '@/hooks/useRefSync';
 
 interface Props {
@@ -18,7 +18,7 @@ export const RefSyncInputs = ({
     <div className="space-y-3">
       {pickUpPositions.map((position, index) => {
         return (
-          <RemovableInput
+          <EditableInputWithMenu
             // NOTE: フォームのフォーカスをそのままにしたい為indexをkeyに入れている
             key={index}
             value={originalText.substring(

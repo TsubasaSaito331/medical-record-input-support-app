@@ -3,8 +3,8 @@
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { EditableInputWithMenu } from '@/components/editable-input-with-menu';
 import { RecordingButton } from '@/components/recording-button';
-import { RemovableInput } from '@/components/removable-input';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
@@ -12,6 +12,8 @@ import { toast } from '@/components/ui/use-toast';
 import { useASRInput } from '@/hooks/useASRInput';
 import { soapFromChatGPT } from '@/lib/api/soap';
 import type { Summary } from '@/lib/typechat/soap';
+
+const menuItems = ['s', 'o', 'a', 'p'] as const;
 
 export const modelValue =
   'おはようございます調子はいかがですかおはようございますえーと少し頭痛がします頭痛ですか昨晩はよく眠れましたかそうですね何度か目が覚めてしまいました分かりました後ほど頭痛の薬を持ってきますねそれと体温を測りたいと思いますはいお願いします体温は37.8℃ですね少し高めです今のところ寒気や他の症状はありますかえーと寒気は特にないですが背中が痛いです背中ですか位置はどの辺りでしょうかうーん腰のあたりです分かりました後ほどマッサージや温熱治療を検討してみますね血圧も測りたいと思いますはいよろしくお願いします血圧は130/85です少し高めなので適度な運動や食事の改善を検討しましょう水分は1日にどのくらいとってますか1.5リットルくらいですかよくわかってないけど多分そのくらいですわかりました国循から1日2リットルの指示が出ているのでしっかり2リットルを飲むようにしましょうほかに何かきになることはありますか夜間にトイレに行くことが多くてあまりよく眠れていません利尿剤が効いてるんですかねそれはたぶん年のせいと飲む水の量が増えたからですねもしどうしても気になるようなら泌尿器科を受診してくださいそれでは本日の回診は終了ですお疲れ様です';
@@ -23,10 +25,10 @@ export const SOAPView = () => {
       continuous: true,
     });
 
-  const [subjective, setSubjective] = useState<string[]>([]);
-  const [objective, setObjective] = useState<string[]>([]);
-  const [assessment, setAssessment] = useState<string[]>([]);
-  const [plan, setPlan] = useState<string[]>([]);
+  const [subjective, setSubjective] = useState<string[]>(['hoge']);
+  const [objective, setObjective] = useState<string[]>(['huga']);
+  const [assessment, setAssessment] = useState<string[]>(['piyo']);
+  const [plan, setPlan] = useState<string[]>(['hyoge']);
   const [summary, setSummary] = useState<Summary>([]);
   const [structuring, setStructuring] = useState(false);
 
@@ -105,7 +107,7 @@ export const SOAPView = () => {
           <Label>Subjective</Label>
           <div className="space-y-3">
             {subjective.map((s, i) => (
-              <RemovableInput
+              <EditableInputWithMenu
                 key={i}
                 value={s}
                 onChange={(e) => {
@@ -118,6 +120,26 @@ export const SOAPView = () => {
                   newSubjective.splice(i, 1);
                   setSubjective(newSubjective);
                 }}
+                menuItems={[...menuItems].filter((item) => item !== 's')}
+                onMenuSelect={(item) => {
+                  // まず、選択したアイテムを自分のところから削除する
+                  const newSubjective = [...subjective];
+                  newSubjective.splice(i, 1);
+                  setSubjective(newSubjective);
+
+                  if (item === 's') {
+                    setSubjective([...objective, s]);
+                  }
+                  if (item === 'o') {
+                    setObjective([...objective, s]);
+                  }
+                  if (item === 'a') {
+                    setAssessment([...assessment, s]);
+                  }
+                  if (item === 'p') {
+                    setPlan([...plan, s]);
+                  }
+                }}
               />
             ))}
           </div>
@@ -128,7 +150,7 @@ export const SOAPView = () => {
           <Label>Objective</Label>
           <div className="space-y-3">
             {objective.map((o, i) => (
-              <RemovableInput
+              <EditableInputWithMenu
                 key={i}
                 value={o}
                 onChange={(e) => {
@@ -141,6 +163,26 @@ export const SOAPView = () => {
                   newObjective.splice(i, 1);
                   setObjective(newObjective);
                 }}
+                menuItems={[...menuItems].filter((item) => item !== 'o')}
+                onMenuSelect={(item) => {
+                  // まず、選択したアイテムを自分のところから削除する
+                  const newObjective = [...objective];
+                  newObjective.splice(i, 1);
+                  setObjective(newObjective);
+
+                  if (item === 's') {
+                    setSubjective([...subjective, o]);
+                  }
+                  if (item === 'o') {
+                    setObjective([...objective, o]);
+                  }
+                  if (item === 'a') {
+                    setAssessment([...assessment, o]);
+                  }
+                  if (item === 'p') {
+                    setPlan([...plan, o]);
+                  }
+                }}
               />
             ))}
           </div>
@@ -151,7 +193,7 @@ export const SOAPView = () => {
           <Label>Assessment</Label>
           <div className="space-y-3">
             {assessment.map((a, i) => (
-              <RemovableInput
+              <EditableInputWithMenu
                 key={i}
                 value={a}
                 onChange={(e) => {
@@ -164,6 +206,26 @@ export const SOAPView = () => {
                   newAssessment.splice(i, 1);
                   setAssessment(newAssessment);
                 }}
+                menuItems={[...menuItems].filter((item) => item !== 'a')}
+                onMenuSelect={(item) => {
+                  // まず、選択したアイテムを自分のところから削除する
+                  const newAssessment = [...assessment];
+                  newAssessment.splice(i, 1);
+                  setAssessment(newAssessment);
+
+                  if (item === 's') {
+                    setSubjective([...subjective, a]);
+                  }
+                  if (item === 'o') {
+                    setObjective([...objective, a]);
+                  }
+                  if (item === 'a') {
+                    setAssessment([...assessment, a]);
+                  }
+                  if (item === 'p') {
+                    setPlan([...plan, a]);
+                  }
+                }}
               />
             ))}
           </div>
@@ -174,7 +236,7 @@ export const SOAPView = () => {
           <Label>Plan</Label>
           <div className="space-y-3">
             {plan.map((p, i) => (
-              <RemovableInput
+              <EditableInputWithMenu
                 key={i}
                 value={p}
                 onChange={(e) => {
@@ -186,6 +248,26 @@ export const SOAPView = () => {
                   const newPlan = [...plan];
                   newPlan.splice(i, 1);
                   setPlan(newPlan);
+                }}
+                menuItems={[...menuItems].filter((item) => item !== 'p')}
+                onMenuSelect={(item) => {
+                  // まず、選択したアイテムを自分のところから削除する
+                  const newPlan = [...plan];
+                  newPlan.splice(i, 1);
+                  setPlan(newPlan);
+
+                  if (item === 's') {
+                    setSubjective([...subjective, p]);
+                  }
+                  if (item === 'o') {
+                    setObjective([...objective, p]);
+                  }
+                  if (item === 'a') {
+                    setAssessment([...assessment, p]);
+                  }
+                  if (item === 'p') {
+                    setPlan([...plan, p]);
+                  }
                 }}
               />
             ))}
