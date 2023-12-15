@@ -29,7 +29,13 @@ export const SOAPView = () => {
   const [objective, setObjective] = useState<string[]>(['huga']);
   const [assessment, setAssessment] = useState<string[]>(['piyo']);
   const [plan, setPlan] = useState<string[]>(['hyoge']);
-  const [summary, setSummary] = useState<Summary>([]);
+  const [summary, setSummary] = useState<Summary>([
+    // { speaker: 'doctor', text: '体調はいかがですか' },
+    // { speaker: 'patient', text: '少し頭痛がします' },
+    // { speaker: 'doctor', text: '昨晩はよく眠れましたか' },
+    // { speaker: 'patient', text: '何度か目が覚めてしまいました' },
+    // { speaker: 'doctor', text: '体温は37.8℃ですね' },
+  ]);
   const [structuring, setStructuring] = useState(false);
 
   useEffect(() => {
@@ -79,28 +85,6 @@ export const SOAPView = () => {
     <>
       <div className="space-y-4">
         {recording ? <div>{value + transcript}</div> : <div>{value}</div>}
-
-        {/* Summary */}
-        {summary.length > 0 && (
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button>要約を見る</Button>
-            </DialogTrigger>
-            <DialogContent>
-              <div className="space-y-4">
-                {summary.map((s, i) => (
-                  <div key={i}>
-                    {s.speaker === 'patient' ? (
-                      <p>患者の発言: {s.text}</p>
-                    ) : (
-                      <p>医者の発言: {s.text}</p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </DialogContent>
-          </Dialog>
-        )}
 
         {/* Subjective */}
         <div>
@@ -275,7 +259,7 @@ export const SOAPView = () => {
         </div>
 
         <div className="mt-8 flex items-center justify-center">
-          <div className="mt-8 flex items-center justify-center">
+          <div className="mt-8 flex flex-col items-center justify-center gap-4">
             {structuring ? (
               <Button size="lg" disabled>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -286,6 +270,32 @@ export const SOAPView = () => {
                 モデルケースを試す
               </Button>
             )}
+
+            {/* Summary */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  disabled={summary.length < 1}
+                >
+                  要約を見る
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <div className="space-y-4">
+                  {summary.map((s, i) => (
+                    <div key={i}>
+                      {s.speaker === 'patient' ? (
+                        <p>患者の発言: {s.text}</p>
+                      ) : (
+                        <p>医者の発言: {s.text}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </DialogContent>
+            </Dialog>
           </div>
         </div>
       </div>
