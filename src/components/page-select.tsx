@@ -30,6 +30,7 @@ export const PageSelect = () => {
         <SelectItem value="/">トップページ</SelectItem>
         <SelectItem value="/experiment">実験</SelectItem>
         <SelectItem value="/soap">SOAP</SelectItem>
+        <SelectItem value="/demo">デモ</SelectItem>
       </SelectContent>
     </Select>
   );

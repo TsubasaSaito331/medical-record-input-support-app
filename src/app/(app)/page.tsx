@@ -23,7 +23,7 @@ export default function Home() {
           <Link href="/experiment">実験を行う</Link>
         </Button>
         <Button size="lg">
-          <Link href="/experiment">試してみる</Link>
+          <Link href="/demo">試してみる</Link>
         </Button>
       </div>
     </div>
