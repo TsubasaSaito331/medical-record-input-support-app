@@ -10,12 +10,14 @@ export async function POST(request: Request) {
 
   try {
     const response =
-      await translator.translate(`以下の本文、ルール、項目から、項目に関連度の高い情報を抽出せよ。
+      await translator.translate(`本文から情報を抽出し、項目ごとに整理してください。抽出の際はルールに従ってください。
     ## 本文
     ${body.text}
+
     ## ルール
     - 抽出した情報が文だった場合、文末を整える（例：「改善されており」→「改善されている」）
     - 数字が入った情報は数字のみ抽出する（例:「1,000円」→「1,000」）
+
     ## 項目
     ${ROUNDS_ITEM_LABELS.join('\n')}
     `);
